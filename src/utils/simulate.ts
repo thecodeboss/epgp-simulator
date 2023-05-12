@@ -42,7 +42,7 @@ export const simulate = (options: SimOptions): SimResult => {
   let currentGP = options.initialGP;
 
   let currentDate = new Date(options.startDate);
-  const simulationData: Array<[Date, number]> = [];
+  const data: Array<[Date, number]> = [];
 
   currentDate.setHours(0, 0, 0, 0);
 
@@ -50,18 +50,18 @@ export const simulate = (options: SimOptions): SimResult => {
     if (isRaidDay(currentDate)) {
       // Award EP at 8:00pm every raid day
       currentEP += options.epPerRaid;
-      simulationData.push([getDateAtHour(currentDate, 20), calculatePR(currentEP, currentGP)]);
+      data.push([getDateAtHour(currentDate, 20), calculatePR(currentEP, currentGP)]);
 
       // Apply decay at 9:00pm every Thursday
       if (currentDate.getDay() === 4) {
         currentEP = Math.round(currentEP * (1 - options.weeklyEPDecayPercent / 100));
         currentGP = Math.round(currentGP * (1 - options.weeklyGPDecayPercent / 100));
-        simulationData.push([getDateAtHour(currentDate, 21), calculatePR(currentEP, currentGP)]);
+        data.push([getDateAtHour(currentDate, 21), calculatePR(currentEP, currentGP)]);
       }
     }
 
     currentDate = addDays(currentDate, 1);
   }
 
-  return { data: simulationData };
+  return { data };
 };

@@ -1,3 +1,5 @@
+import { addDays, getDateAtHour, isRaidDay } from './dates';
+
 interface SimOptions {
   startDate: Date;
   endDate: Date;
@@ -11,27 +13,6 @@ interface SimOptions {
 interface SimResult {
   data: Array<[Date, number]>;
 }
-
-const isRaidDay = (date: Date): boolean => {
-  // Tuesday (2) and Thursday (4)
-  return date.getDay() === 2 || date.getDay() === 4;
-};
-
-const addDays = (date: Date, days: number): Date => {
-  const result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
-};
-
-const getDateAtHour = (date: Date, hour: number): Date => {
-  if (hour < 0 || hour > 23) {
-    throw new Error('Invalid hour value, must be between 0 and 23.');
-  }
-
-  const result = new Date(date);
-  result.setHours(hour, 0, 0, 0); // Set the time to the specified hour, and reset minutes, seconds and milliseconds to 0
-  return result;
-};
 
 const calculatePR = (ep: number, gp: number): number => {
   return ep / (gp !== 0 ? gp : 1);

@@ -15,6 +15,6 @@ export const getDateAtHour = (date: Date, hour: number): Date => {
   }
 
   const result = new Date(date);
-  result.setHours(hour, 0, 0, 0); // Set the time to the specified hour, and reset minutes, seconds and milliseconds to 0
+  result.setHours(hour, 0, 0, 0);
   return result;
 };

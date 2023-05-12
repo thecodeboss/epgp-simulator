@@ -37,6 +37,10 @@ const calculatePR = (ep: number, gp: number): number => {
   return ep / (gp !== 0 ? gp : 1);
 };
 
+const decay = (value: number, percent: number): number => {
+  return Math.round(value * (1 - percent / 100));
+};
+
 export const simulate = (options: SimOptions): SimResult => {
   let currentEP = options.initialEP;
   let currentGP = options.initialGP;
@@ -54,8 +58,8 @@ export const simulate = (options: SimOptions): SimResult => {
 
       // Apply decay at 9:00pm every Thursday
       if (currentDate.getDay() === 4) {
-        currentEP = Math.round(currentEP * (1 - options.weeklyEPDecayPercent / 100));
-        currentGP = Math.round(currentGP * (1 - options.weeklyGPDecayPercent / 100));
+        currentEP = decay(currentEP, options.weeklyEPDecayPercent);
+        currentGP = decay(currentGP, options.weeklyGPDecayPercent);
         data.push([getDateAtHour(currentDate, 21), calculatePR(currentEP, currentGP)]);
       }
     }

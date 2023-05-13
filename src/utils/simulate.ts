@@ -11,7 +11,7 @@ interface SimOptions {
 }
 
 interface SimResult {
-  data: Array<[Date, number]>;
+  data: Array<{ date: Date; pr: number }>;
 }
 
 const calculatePR = (ep: number, gp: number): number => {
@@ -27,7 +27,7 @@ export const simulate = (options: SimOptions): SimResult => {
   let currentGP = options.initialGP;
 
   let currentDate = new Date(options.startDate);
-  const data: Array<[Date, number]> = [];
+  const data: Array<{ date: Date; pr: number }> = [];
 
   currentDate.setHours(0, 0, 0, 0);
 
@@ -35,13 +35,19 @@ export const simulate = (options: SimOptions): SimResult => {
     if (isRaidDay(currentDate)) {
       // Award EP at 8:00pm every raid day
       currentEP += options.epPerRaid;
-      data.push([getDateAtHour(currentDate, 20), calculatePR(currentEP, currentGP)]);
+      data.push({
+        date: getDateAtHour(currentDate, 20),
+        pr: calculatePR(currentEP, currentGP),
+      });
 
       // Apply decay at 9:00pm every Thursday
       if (currentDate.getDay() === 4) {
         currentEP = decay(currentEP, options.weeklyEPDecayPercent);
         currentGP = decay(currentGP, options.weeklyGPDecayPercent);
-        data.push([getDateAtHour(currentDate, 21), calculatePR(currentEP, currentGP)]);
+        data.push({
+          date: getDateAtHour(currentDate, 21),
+          pr: calculatePR(currentEP, currentGP),
+        });
       }
     }
 

@@ -2,7 +2,6 @@ import { ConfigProvider, Layout, theme as baseTheme } from 'antd';
 import type { FC } from 'react';
 import 'antd/dist/reset.css';
 
-import { simulate } from './utils/simulate';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -38,17 +37,5 @@ const App: FC = () => (
 // Save config profile button
 // - are you sure you want to overwrite?
 // Load config profile button
-
-console.log(
-  simulate({
-    startDate: new Date('2023-01-01'),
-    endDate: new Date('2023-04-31'),
-    epPerRaid: 1000,
-    initialEP: 1000,
-    initialGP: 10,
-    weeklyEPDecayPercent: 10,
-    weeklyGPDecayPercent: 20,
-  })
-);
 
 export default App;

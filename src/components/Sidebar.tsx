@@ -16,7 +16,11 @@ const items: MenuItem[] = [
 export const Sidebar: FC = () => {
   return (
     <Layout.Sider style={{ backgroundColor: 'transparent' }}>
-      <Menu items={items} style={{ backgroundColor: 'transparent', borderRight: 0 }} />
+      <Menu
+        items={items}
+        selectedKeys={['home']}
+        style={{ backgroundColor: 'transparent', borderRight: 0 }}
+      />
     </Layout.Sider>
   );
 };

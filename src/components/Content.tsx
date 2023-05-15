@@ -3,6 +3,7 @@ import { Breadcrumb, Card, Layout } from 'antd';
 import type { FC } from 'react';
 import { Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { simulate } from '../utils/simulate';
+import { CustomTooltip } from './CustomTooltip';
 
 const { data } = simulate({
   startDate: new Date('2023-01-01'),
@@ -17,21 +18,6 @@ const { data } = simulate({
 
 const formatData = (data: ReturnType<typeof simulate>['data']) => {
   return data.map((d) => ({ ...d, x: d.date.getTime() }));
-};
-
-// TODO: type
-const CustomTooltip: FC = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <Card>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span>{new Date(payload[0].value).toLocaleDateString('en-US')}</span>
-          <span>{payload[0].payload.note}</span>
-        </div>
-      </Card>
-    );
-  }
-  return null;
 };
 
 export const Content: FC = () => {

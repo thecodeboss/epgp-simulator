@@ -1,11 +1,10 @@
 import { HomeOutlined } from '@ant-design/icons';
 import { Breadcrumb, Card, Layout } from 'antd';
 import type { FC } from 'react';
-import { Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
-import { simulate } from '../utils/simulate';
-import { CustomTooltip } from './CustomTooltip';
+import { DataPoint, simulate } from '../utils/simulate';
+import { Chart } from './Chart';
 
-const { data } = simulate({
+const pp = simulate({
   startDate: new Date('2023-01-01'),
   endDate: new Date('2023-04-31'),
   epPerRaid: 1000,
@@ -16,9 +15,16 @@ const { data } = simulate({
   weeklyGPDecayPercent: 20,
 });
 
-const formatData = (data: ReturnType<typeof simulate>['data']) => {
-  return data.map((d) => ({ ...d, x: d.date.getTime() }));
-};
+const code = simulate({
+  startDate: new Date('2023-01-01'),
+  endDate: new Date('2023-04-31'),
+  epPerRaid: 1000,
+  initialEP: 1200,
+  initialGP: 60,
+  minimumGP: 10,
+  weeklyEPDecayPercent: 10,
+  weeklyGPDecayPercent: 20,
+});
 
 export const Content: FC = () => {
   return (
@@ -28,18 +34,18 @@ export const Content: FC = () => {
         style={{ padding: '12px' }}
       />
       <Card title="Sim time!">
-        <ScatterChart width={800} height={400} data={formatData(data)}>
-          <XAxis
-            type="number"
-            dataKey="x"
-            name="date"
-            domain={['dataMin', 'dataMax']}
-            tickFormatter={(val) => new Date(val).toLocaleDateString('en-US')}
-          />
-          <YAxis type="number" dataKey="pr" />
-          <Tooltip content={<CustomTooltip />} />
-          <Scatter name="A" line fill="#8884d8" />
-        </ScatterChart>
+        <Chart
+          simulations={[
+            {
+              name: 'Ppstorm',
+              data: pp,
+            },
+            {
+              name: 'Code',
+              data: code,
+            },
+          ]}
+        />
       </Card>
     </Layout.Content>
   );

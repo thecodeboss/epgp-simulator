@@ -11,14 +11,10 @@ interface SimOptions {
   epPerRaid: number;
 }
 
-interface DataPoint {
+export interface DataPoint {
   date: Date;
   pr: number;
   note: string;
-}
-
-interface SimResult {
-  data: Array<DataPoint>;
 }
 
 const calculatePR = (ep: number, gp: number): number => {
@@ -29,7 +25,7 @@ const decay = (value: number, percent: number): number => {
   return Math.round(value * (1 - percent / 100));
 };
 
-export const simulate = (options: SimOptions): SimResult => {
+export const simulate = (options: SimOptions): Array<DataPoint> => {
   let currentEP = options.initialEP;
   let currentGP = options.initialGP;
 
@@ -63,5 +59,5 @@ export const simulate = (options: SimOptions): SimResult => {
     currentDate = addDays(currentDate, 1);
   }
 
-  return { data };
+  return data;
 };

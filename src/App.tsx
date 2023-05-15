@@ -1,13 +1,24 @@
-import type { FC } from 'react';
+import { FC, useState } from 'react';
 import { PlayerConfig } from './components/PlayerConfig';
 import { Players } from './components/Players';
 import { Sidebar } from './components/Sidebar';
 import { Simulation } from './components/Simulation';
+import { Config } from './utils/types';
+
+const defaultConfig: Config = {
+  startDate: new Date('2023-01-01'),
+  endDate: new Date('2023-04-31'),
+  epPerRaid: 1000,
+  minimumGP: 10,
+  weeklyEPDecayPercent: 10,
+  weeklyGPDecayPercent: 20,
+};
 
 const App: FC = () => {
+  const [config, setConfig] = useState<Config>(defaultConfig);
   return (
     <div style={{ display: 'flex', flexGrow: 1 }}>
-      <Sidebar />
+      <Sidebar config={config} setConfig={setConfig} />
       <div
         style={{
           display: 'flex',

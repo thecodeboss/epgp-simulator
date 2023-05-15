@@ -31,6 +31,7 @@ export const Chart: FC<ChartProps> = ({ simulations }) => {
       <Tooltip content={<CustomTooltip />} />
       {simulations.map((simulation) => (
         <Scatter
+          key={simulation.name}
           name={simulation.name}
           data={formatData(simulation.data)}
           line

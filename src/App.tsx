@@ -1,8 +1,35 @@
 import type { FC } from 'react';
+import { PlayerConfig } from './components/PlayerConfig';
+import { Players } from './components/Players';
+import { Sidebar } from './components/Sidebar';
+import { Simulation } from './components/Simulation';
 
-import { Content } from './components/Content';
-
-const App: FC = () => <Content />;
+const App: FC = () => (
+  <div style={{ display: 'flex', flexGrow: 1 }}>
+    <Sidebar />
+    <div
+      style={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        flexGrow: 1,
+      }}
+    >
+      <Simulation />
+      <div
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.04)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+          display: 'flex',
+          flexGrow: 1,
+        }}
+      >
+        <Players />
+        <PlayerConfig />
+      </div>
+    </div>
+  </div>
+);
 
 // Add player button (with name, + form for simulation params)
 // - Simulate them winning an item on a given day

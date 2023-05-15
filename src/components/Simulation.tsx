@@ -24,21 +24,29 @@ const code = simulate({
   weeklyGPDecayPercent: 20,
 });
 
-export const Content: FC = () => {
+export const Simulation: FC = () => {
   return (
-    <Chart
-      simulations={[
-        {
-          color: 'blue',
-          name: 'Ppstorm',
-          data: pp,
-        },
-        {
-          color: 'green',
-          name: 'Code',
-          data: code,
-        },
-      ]}
-    />
+    <div
+      style={{
+        height: '400px',
+        padding: '1rem',
+      }}
+    >
+      <h2>Simulation</h2>
+      <Chart
+        simulations={[
+          {
+            color: 'blue',
+            name: 'Ppstorm',
+            data: pp,
+          },
+          {
+            color: 'green',
+            name: 'Code',
+            data: code,
+          },
+        ]}
+      />
+    </div>
   );
 };

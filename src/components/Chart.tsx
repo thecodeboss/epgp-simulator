@@ -18,7 +18,6 @@ const formatData = (data: any): any => {
 };
 
 export const Chart: FC<ChartProps> = ({ simulations }) => {
-  console.log(simulations);
   return (
     <ScatterChart width={800} height={400}>
       <XAxis

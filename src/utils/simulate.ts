@@ -5,6 +5,7 @@ interface SimOptions {
   endDate: Date;
   initialEP: number;
   initialGP: number;
+  minimumGP: number;
   weeklyEPDecayPercent: number;
   weeklyGPDecayPercent: number;
   epPerRaid: number;
@@ -50,7 +51,7 @@ export const simulate = (options: SimOptions): SimResult => {
       // Apply decay at 9:00pm every Thursday
       if (currentDate.getDay() === 4) {
         currentEP = decay(currentEP, options.weeklyEPDecayPercent);
-        currentGP = decay(currentGP, options.weeklyGPDecayPercent);
+        currentGP = Math.max(options.minimumGP, decay(currentGP, options.weeklyGPDecayPercent));
         data.push({
           date: getDateAtHour(currentDate, 21),
           pr: calculatePR(currentEP, currentGP),

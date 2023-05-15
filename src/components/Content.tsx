@@ -10,6 +10,7 @@ const { data } = simulate({
   epPerRaid: 1000,
   initialEP: 1000,
   initialGP: 10,
+  minimumGP: 10,
   weeklyEPDecayPercent: 10,
   weeklyGPDecayPercent: 20,
 });

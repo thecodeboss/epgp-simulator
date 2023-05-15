@@ -1,8 +1,8 @@
 export interface Config {
-  endDate: Date;
+  endDate: string;
   epPerRaid: number;
   minimumGP: number;
-  startDate: Date;
+  startDate: string;
   weeklyEPDecayPercent: number;
   weeklyGPDecayPercent: number;
 }

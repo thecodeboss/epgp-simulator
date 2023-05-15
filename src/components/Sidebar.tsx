@@ -8,21 +8,11 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ config, setConfig }) => {
-  const handleNumberChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback(
+    (key: string, value: number | string) => {
       setConfig((prevConfig: Config) => ({
         ...prevConfig,
-        [event.target.name]: parseInt(event.target.value, 10),
-      }));
-    },
-    [setConfig]
-  );
-
-  const handleStringChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setConfig((prevConfig: Config) => ({
-        ...prevConfig,
-        [event.target.name]: event.target.value,
+        [key]: value,
       }));
     },
     [setConfig]
@@ -45,32 +35,43 @@ export const Sidebar: FC<SidebarProps> = ({ config, setConfig }) => {
         <Input
           label="Start Date"
           name="startDate"
-          onChange={handleStringChange}
-          value="2023-01-01"
+          onChange={handleChange}
+          type="string"
+          value={config.startDate}
         />
-        <Input label="End Date" name="endDate" onChange={handleStringChange} value="2023-04-01" />
+        <Input
+          label="End Date"
+          name="endDate"
+          onChange={handleChange}
+          type="string"
+          value={config.endDate}
+        />
         <Input
           label="EP Per Raid"
           name="epPerRaid"
-          onChange={handleNumberChange}
+          onChange={handleChange}
+          type="number"
           value={config.epPerRaid}
         />
         <Input
           label="Minimum GP"
           name="minimumGP"
-          onChange={handleNumberChange}
+          onChange={handleChange}
+          type="number"
           value={config.minimumGP}
         />
         <Input
           label="Weekly EP Decay %"
           name="weeklyEPDecayPercent"
-          onChange={handleNumberChange}
+          onChange={handleChange}
+          type="number"
           value={config.weeklyEPDecayPercent}
         />
         <Input
           label="Weekly GP Decay %"
           name="weeklyGPDecayPercent"
-          onChange={handleNumberChange}
+          onChange={handleChange}
+          type="number"
           value={config.weeklyGPDecayPercent}
         />
       </div>

@@ -4,6 +4,11 @@ export const PlayerConfig: FC = () => {
   return (
     <div style={{ padding: '1rem', width: '100%' }}>
       <h2>Player Config</h2>
+      Name
+      Color
+      Starting EP
+      Starting GP
+      TODO: win items
     </div>
   );
 };

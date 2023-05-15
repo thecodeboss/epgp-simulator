@@ -6,8 +6,8 @@ import { Simulation } from './components/Simulation';
 import { Config } from './utils/types';
 
 const defaultConfig: Config = {
-  startDate: new Date('2023-01-01'),
-  endDate: new Date('2023-04-31'),
+  startDate: '2023-01-01',
+  endDate: '2023-04-31',
   epPerRaid: 1000,
   minimumGP: 10,
   weeklyEPDecayPercent: 10,

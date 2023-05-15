@@ -1,31 +1,8 @@
-import { ConfigProvider, Layout, theme as baseTheme } from 'antd';
 import type { FC } from 'react';
-import 'antd/dist/reset.css';
 
-import { Sidebar } from './components/Sidebar';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
 import { Content } from './components/Content';
 
-const theme = {
-  algorithm: baseTheme.darkAlgorithm,
-  token: {
-    colorPrimary: '#F4801A',
-  },
-};
-
-const App: FC = () => (
-  <ConfigProvider theme={theme}>
-    <Layout>
-      <Header />
-      <Layout>
-        <Sidebar />
-        <Content />
-      </Layout>
-      <Footer />
-    </Layout>
-  </ConfigProvider>
-);
+const App: FC = () => <Content />;
 
 // Add player button (with name, + form for simulation params)
 // - Simulate them winning an item on a given day

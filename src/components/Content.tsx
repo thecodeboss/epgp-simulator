@@ -1,7 +1,7 @@
 import { HomeOutlined } from '@ant-design/icons';
 import { Breadcrumb, Card, Layout } from 'antd';
 import type { FC } from 'react';
-import { DataPoint, simulate } from '../utils/simulate';
+import { simulate } from '../utils/simulate';
 import { Chart } from './Chart';
 
 const pp = simulate({
@@ -37,10 +37,12 @@ export const Content: FC = () => {
         <Chart
           simulations={[
             {
+              color: 'blue',
               name: 'Ppstorm',
               data: pp,
             },
             {
+              color: 'green',
               name: 'Code',
               data: code,
             },

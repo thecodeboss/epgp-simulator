@@ -4,6 +4,7 @@ import { DataPoint } from '../utils/simulate';
 import { CustomTooltip } from './CustomTooltip';
 
 interface Simulation {
+  color: string;
   name: string;
   data: DataPoint[];
 }
@@ -29,8 +30,14 @@ export const Chart: FC<ChartProps> = ({ simulations }) => {
       />
       <YAxis type="number" dataKey="pr" />
       <Tooltip content={<CustomTooltip />} />
-      <Scatter name="Code" data={formatData(simulations[1].data)} line fill="#8884d8" />
-      <Scatter name="Ppstorm" data={formatData(simulations[0].data)} line fill="#cdeffa" />
+      {simulations.map((simulation) => (
+        <Scatter
+          name={simulation.name}
+          data={formatData(simulation.data)}
+          line
+          fill={simulation.color}
+        />
+      ))}
     </ScatterChart>
   );
 };

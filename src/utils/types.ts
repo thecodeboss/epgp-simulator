@@ -6,3 +6,10 @@ export interface Config {
   weeklyEPDecayPercent: number;
   weeklyGPDecayPercent: number;
 }
+
+export interface Player {
+  color: string;
+  initialEP: number;
+  initialGP: number;
+  name: string;
+}

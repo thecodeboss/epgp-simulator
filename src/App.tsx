@@ -3,7 +3,7 @@ import { PlayerConfig } from './components/PlayerConfig';
 import { Players } from './components/Players';
 import { Sidebar } from './components/Sidebar';
 import { Simulation } from './components/Simulation';
-import { Config } from './utils/types';
+import { Config, Player } from './utils/types';
 
 const defaultConfig: Config = {
   startDate: '2023-01-01',
@@ -16,6 +16,26 @@ const defaultConfig: Config = {
 
 const App: FC = () => {
   const [config, setConfig] = useState<Config>(defaultConfig);
+  const [players, setPlayers] = useState<Player[]>([
+    {
+      name: 'Code',
+      color: 'blue',
+      initialEP: 1200,
+      initialGP: 60,
+    },
+    {
+      name: 'Lunch',
+      color: 'purple',
+      initialEP: 1400,
+      initialGP: 10,
+    },
+    {
+      name: 'Ppstorm',
+      color: 'green',
+      initialEP: 1000,
+      initialGP: 10,
+    },
+  ]);
 
   return (
     <div style={{ display: 'flex', flexGrow: 1 }}>
@@ -37,7 +57,7 @@ const App: FC = () => {
             flexGrow: 1,
           }}
         >
-          <Players />
+          <Players players={players} />
           <PlayerConfig />
         </div>
       </div>

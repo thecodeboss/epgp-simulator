@@ -1,16 +1,17 @@
 import type { FC } from 'react';
 
-interface InputProps {
-  defaultValue: string;
+interface InputProps<T = number | string> {
   label: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
+  value: T;
 }
 
-export const Input: FC<InputProps> = ({ defaultValue, label, name }) => {
+export const Input: FC<InputProps> = ({ label, onChange, name, value }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <label htmlFor={name}>{label}</label>
-      <input defaultValue={defaultValue} id={name} name={name} />
+      <input value={value} id={name} name={name} onChange={onChange} />
     </div>
   );
 };

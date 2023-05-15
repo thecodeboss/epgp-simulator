@@ -16,6 +16,7 @@ const defaultConfig: Config = {
 
 const App: FC = () => {
   const [config, setConfig] = useState<Config>(defaultConfig);
+
   return (
     <div style={{ display: 'flex', flexGrow: 1 }}>
       <Sidebar config={config} setConfig={setConfig} />

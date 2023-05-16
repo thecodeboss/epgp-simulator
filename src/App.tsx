@@ -5,7 +5,7 @@ import { Players } from './components/Players';
 import { Sidebar } from './components/Sidebar';
 import { Simulation } from './components/Simulation';
 import { usePlayers } from './utils/players';
-import { Config } from './utils/types';
+import { Config, Player } from './utils/types';
 
 const defaultConfig: Config = {
   startDate: '2023-01-01',
@@ -16,31 +16,33 @@ const defaultConfig: Config = {
   weeklyGPDecayPercent: 20,
 };
 
+const defaultPlayers: Player[] = [
+  {
+    name: 'Code',
+    color: 'blue',
+    id: uuid(),
+    initialEP: 1200,
+    initialGP: 60,
+  },
+  {
+    name: 'Lunch',
+    color: 'purple',
+    id: uuid(),
+    initialEP: 1400,
+    initialGP: 10,
+  },
+  {
+    name: 'Ppstorm',
+    color: 'green',
+    id: uuid(),
+    initialEP: 1000,
+    initialGP: 10,
+  },
+];
+
 const App: FC = () => {
   const [config, setConfig] = useState<Config>(defaultConfig);
-  const { players, updatePlayer } = usePlayers([
-    {
-      name: 'Code',
-      color: 'blue',
-      id: uuid(),
-      initialEP: 1200,
-      initialGP: 60,
-    },
-    {
-      name: 'Lunch',
-      color: 'purple',
-      id: uuid(),
-      initialEP: 1400,
-      initialGP: 10,
-    },
-    {
-      name: 'Ppstorm',
-      color: 'green',
-      id: uuid(),
-      initialEP: 1000,
-      initialGP: 10,
-    },
-  ]);
+  const { players, updatePlayer } = usePlayers(defaultPlayers);
   const [selectedPlayer, setSelectedPlayer] = useState<string>(players[0].id);
 
   return (

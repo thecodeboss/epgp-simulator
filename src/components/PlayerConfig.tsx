@@ -28,13 +28,6 @@ export const PlayerConfig: FC<PlayerConfigProps> = ({ player, updatePlayer }) =>
       <h2>Player Config</h2>
       <Input label="Name" name="name" onChange={handleChange} type="string" value={player.name} />
       <Input
-        label="Color"
-        name="color"
-        onChange={handleChange}
-        type="string"
-        value={player.color}
-      />
-      <Input
         label="Initial EP"
         name="initialEP"
         onChange={handleChange}

@@ -19,21 +19,18 @@ const defaultConfig: Config = {
 const defaultPlayers: Player[] = [
   {
     name: 'Code',
-    color: 'blue',
     id: uuid(),
     initialEP: 1200,
     initialGP: 60,
   },
   {
     name: 'Lunch',
-    color: 'purple',
     id: uuid(),
     initialEP: 1400,
     initialGP: 10,
   },
   {
     name: 'Ppstorm',
-    color: 'green',
     id: uuid(),
     initialEP: 1000,
     initialGP: 10,

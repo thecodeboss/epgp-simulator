@@ -4,7 +4,6 @@ import { DataPoint } from '../utils/simulate';
 import { theme } from '../utils/theme';
 
 interface Simulation {
-  color: string;
   name: string;
   data: DataPoint[];
 }

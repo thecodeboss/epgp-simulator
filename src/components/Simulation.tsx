@@ -10,7 +10,6 @@ interface SimulationProps {
 
 export const Simulation: FC<SimulationProps> = ({ config, players }) => {
   const simulations = players.map((player) => ({
-    color: player.color,
     name: player.name,
     data: simulate({
       ...config,

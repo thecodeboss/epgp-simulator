@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { FC, useCallback } from 'react';
 import type { Player } from '../utils/types';
 import { Input } from './Input';
 
@@ -8,6 +8,13 @@ interface PlayerConfigProps {
 }
 
 export const PlayerConfig: FC<PlayerConfigProps> = ({ player, updatePlayer }) => {
+  const handleChange = useCallback(
+    (key: string, value: number | string) => {
+      updatePlayer(player.id, { ...player, [key]: value });
+    },
+    [player, updatePlayer]
+  );
+
   return (
     <div
       style={{
@@ -19,23 +26,28 @@ export const PlayerConfig: FC<PlayerConfigProps> = ({ player, updatePlayer }) =>
       }}
     >
       <h2>Player Config</h2>
-      <Input label="Name" name="name" onChange={() => {}} type="string" value={player.name} />
-      <Input label="Color" name="color" onChange={() => {}} type="string" value={player.color} />
+      <Input label="Name" name="name" onChange={handleChange} type="string" value={player.name} />
+      <Input
+        label="Color"
+        name="color"
+        onChange={handleChange}
+        type="string"
+        value={player.color}
+      />
       <Input
         label="Initial EP"
         name="initialEP"
-        onChange={() => {}}
+        onChange={handleChange}
         type="number"
         value={player.initialEP}
       />
       <Input
         label="Initial GP"
         name="initialGP"
-        onChange={() => {}}
+        onChange={handleChange}
         type="number"
         value={player.initialGP}
       />
-      TODO: win items
     </div>
   );
 };

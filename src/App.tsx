@@ -54,7 +54,7 @@ const App: FC = () => {
           flexGrow: 1,
         }}
       >
-        <Simulation />
+        <Simulation config={config} players={players} />
         <div
           style={{
             backgroundColor: 'rgba(255, 255, 255, 0.04)',

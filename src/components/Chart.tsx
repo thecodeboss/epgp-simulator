@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
+import { CartesianGrid, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { DataPoint } from '../utils/simulate';
+import { Config } from '../utils/types';
 import { CustomTooltip } from './CustomTooltip';
 
 interface Simulation {
@@ -19,15 +20,17 @@ const formatData = (data: any): any => {
 
 export const Chart: FC<ChartProps> = ({ simulations }) => {
   return (
-    <ScatterChart width={800} height={400}>
+    <ScatterChart width={1000} height={500}>
       <XAxis
         type="number"
         dataKey="x"
         name="date"
         domain={['dataMin', 'dataMax']}
         tickFormatter={(val) => new Date(val).toLocaleDateString('en-US')}
+        tickCount={13}
       />
       <YAxis type="number" dataKey="pr" />
+      <CartesianGrid strokeDasharray="1 10" />
       <Tooltip content={<CustomTooltip />} />
       {simulations.map((simulation) => (
         <Scatter

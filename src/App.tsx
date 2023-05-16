@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { PlayerConfig } from './components/PlayerConfig';
+import { PlayerSettings } from './components/PlayerSettings';
 import { Players } from './components/Players';
 import { Sidebar } from './components/Sidebar';
 import { Simulation } from './components/Simulation';
@@ -67,7 +67,7 @@ const App: FC = () => {
             selectedPlayer={selectedPlayer}
             setSelectedPlayer={setSelectedPlayer}
           />
-          <PlayerConfig
+          <PlayerSettings
             player={players.find((player) => player.id === selectedPlayer)!}
             updatePlayer={updatePlayer}
           />

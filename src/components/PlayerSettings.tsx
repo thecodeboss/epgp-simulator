@@ -2,12 +2,12 @@ import { FC, useCallback } from 'react';
 import type { Player } from '../utils/types';
 import { Input } from './Input';
 
-interface PlayerConfigProps {
+interface PlayerSettingsProps {
   player: Player;
   updatePlayer: (id: string, player: Player) => void;
 }
 
-export const PlayerConfig: FC<PlayerConfigProps> = ({ player, updatePlayer }) => {
+export const PlayerSettings: FC<PlayerSettingsProps> = ({ player, updatePlayer }) => {
   const handleChange = useCallback(
     (key: string, value: number | string) => {
       updatePlayer(player.id, { ...player, [key]: value });
@@ -25,7 +25,7 @@ export const PlayerConfig: FC<PlayerConfigProps> = ({ player, updatePlayer }) =>
         width: '250px',
       }}
     >
-      <h2>Player Config</h2>
+      <h2>Player Settings</h2>
       <Input label="Name" name="name" onChange={handleChange} type="string" value={player.name} />
       <Input
         label="Initial EP"

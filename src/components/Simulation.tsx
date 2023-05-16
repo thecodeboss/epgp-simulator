@@ -24,6 +24,17 @@ const code = simulate({
   weeklyGPDecayPercent: 20,
 });
 
+const lunch = simulate({
+  startDate: new Date('2023-01-01'),
+  endDate: new Date('2023-04-31'),
+  epPerRaid: 1000,
+  initialEP: 1400,
+  initialGP: 10,
+  minimumGP: 10,
+  weeklyEPDecayPercent: 10,
+  weeklyGPDecayPercent: 20,
+});
+
 export const Simulation: FC = () => {
   return (
     <div
@@ -44,6 +55,11 @@ export const Simulation: FC = () => {
             color: 'green',
             name: 'Code',
             data: code,
+          },
+          {
+            color: 'purple',
+            name: 'Lunch',
+            data: lunch,
           },
         ]}
       />

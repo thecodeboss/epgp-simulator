@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { PlayerConfig } from './components/PlayerConfig';
 import { Players } from './components/Players';
 import { Sidebar } from './components/Sidebar';
@@ -36,6 +36,15 @@ const App: FC = () => {
       initialGP: 10,
     },
   ]);
+  const [selectedPlayer, setSelectedPlayer] = useState<string>('Code');
+  const setPlayer = useCallback((player: Player) => {
+    setPlayers((prevPlayers) => {
+      const index = prevPlayers.findIndex((prevPlayer) => prevPlayer.name === player.name);
+      const newPlayers = [...prevPlayers];
+      newPlayers[index] = player;
+      return newPlayers;
+    });
+  }, []);
 
   return (
     <div style={{ display: 'flex', flexGrow: 1 }}>
@@ -57,8 +66,15 @@ const App: FC = () => {
             flexGrow: 1,
           }}
         >
-          <Players players={players} />
-          <PlayerConfig />
+          <Players
+            players={players}
+            selectedPlayer={selectedPlayer}
+            setSelectedPlayer={setSelectedPlayer}
+          />
+          <PlayerConfig
+            player={players.find((player) => player.name === selectedPlayer)!}
+            setPlayer={setPlayer}
+          />
         </div>
       </div>
     </div>

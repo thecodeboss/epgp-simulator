@@ -3,10 +3,11 @@ import { Player } from '../utils/types';
 
 interface PlayersProps {
   players: Player[];
+  selectedPlayer: string;
+  setSelectedPlayer: (player: string) => void;
 }
 
-export const Players: FC<PlayersProps> = ({ players }) => {
-  const [selectedPlayer, setSelectedPlayer] = useState(players[0].name);
+export const Players: FC<PlayersProps> = ({ players, selectedPlayer, setSelectedPlayer }) => {
   return (
     <div
       style={{

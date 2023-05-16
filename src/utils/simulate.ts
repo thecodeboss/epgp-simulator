@@ -43,17 +43,17 @@ export const simulate = (options: SimOptions): Array<DataPoint> => {
         pr: calculatePR(currentEP, currentGP),
         note: 'EP awarded',
       });
+    }
 
-      // Apply decay at 9:00pm every Thursday
-      if (currentDate.getDay() === 4) {
-        currentEP = decay(currentEP, options.weeklyEPDecayPercent);
-        currentGP = Math.max(options.minimumGP, decay(currentGP, options.weeklyGPDecayPercent));
-        data.push({
-          date: getDateAtHour(currentDate, 21),
-          pr: calculatePR(currentEP, currentGP),
-          note: 'Weekly decay',
-        });
-      }
+    // Apply decay at 8:00pm every Saturday
+    if (currentDate.getDay() === 6) {
+      currentEP = decay(currentEP, options.weeklyEPDecayPercent);
+      currentGP = Math.max(options.minimumGP, decay(currentGP, options.weeklyGPDecayPercent));
+      data.push({
+        date: getDateAtHour(currentDate, 20),
+        pr: calculatePR(currentEP, currentGP),
+        note: 'Weekly decay',
+      });
     }
 
     currentDate = addDays(currentDate, 1);

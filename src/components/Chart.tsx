@@ -1,6 +1,7 @@
 import { Line } from '@nivo/line';
 import { FC } from 'react';
 import { DataPoint } from '../utils/simulate';
+import { theme } from '../utils/theme';
 
 interface Simulation {
   color: string;
@@ -47,45 +48,8 @@ export const Chart: FC<ChartProps> = ({ simulations }) => {
       pointBorderWidth={1}
       pointColor={{ theme: 'background' }}
       pointBorderColor={{ from: 'serieColor' }}
-      useMesh={true}
       enableSlices="x"
-      theme={{
-        axis: {
-          domain: {
-            line: {
-              strokeWidth: 0,
-              stroke: '#526271',
-            },
-          },
-          ticks: {
-            line: {
-              strokeWidth: 1,
-              stroke: '#526271',
-            },
-            text: {
-              fill: '#8d9cab',
-              fontSize: 11,
-            },
-          },
-          legend: {
-            text: {
-              fill: '#ccd7e2',
-              fontSize: 13,
-              fontWeight: 500,
-            },
-          },
-        },
-        grid: {
-          line: {
-            stroke: '#444',
-          },
-        },
-        tooltip: {
-          container: {
-            color: 'black',
-          },
-        },
-      }}
+      theme={theme}
     />
   );
 };

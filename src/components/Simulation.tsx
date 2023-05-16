@@ -21,7 +21,7 @@ export const Simulation: FC<SimulationProps> = ({ config, players }) => {
     }),
   }));
   return (
-    <div style={{ padding: '1rem', height: '532px' }}>
+    <div style={{ padding: '1rem', height: '532px', backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
       <h2>Simulation</h2>
       {/* <Chart simulations={simulations} /> */}
       <Chart simulations={simulations} />

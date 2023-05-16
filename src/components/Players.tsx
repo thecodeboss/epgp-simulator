@@ -19,7 +19,7 @@ export const Players: FC<PlayersProps> = ({ players, selectedPlayer, setSelected
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {players.map((player) => (
           <div
-            key={player.name}
+            key={player.id}
             style={{
               backgroundColor:
                 player.id === selectedPlayer ? 'rgba(255, 255, 255, 0.08)' : undefined,

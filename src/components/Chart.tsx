@@ -1,8 +1,6 @@
+import { Line } from '@nivo/line';
 import { FC } from 'react';
-import { CartesianGrid, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { DataPoint } from '../utils/simulate';
-import { Config } from '../utils/types';
-import { CustomTooltip } from './CustomTooltip';
 
 interface Simulation {
   color: string;
@@ -14,33 +12,80 @@ interface ChartProps {
   simulations: Simulation[];
 }
 
-const formatData = (data: any): any => {
-  return data.map((d: any) => ({ ...d, x: d.date.getTime() }));
+const commonProperties = {
+  width: 1000,
+  height: 500,
+  margin: { top: 20, right: 20, bottom: 60, left: 80 },
+  animate: true,
+  enableSlices: 'x',
 };
 
 export const Chart: FC<ChartProps> = ({ simulations }) => {
   return (
-    <ScatterChart width={1000} height={500}>
-      <XAxis
-        type="number"
-        dataKey="x"
-        name="date"
-        domain={['dataMin', 'dataMax']}
-        tickFormatter={(val) => new Date(val).toLocaleDateString('en-US')}
-        tickCount={13}
-      />
-      <YAxis type="number" dataKey="pr" />
-      <CartesianGrid strokeDasharray="1 10" />
-      <Tooltip content={<CustomTooltip />} />
-      {simulations.map((simulation) => (
-        <Scatter
-          key={simulation.name}
-          name={simulation.name}
-          data={formatData(simulation.data)}
-          line
-          fill={simulation.color}
-        />
-      ))}
-    </ScatterChart>
+    <Line
+      {...commonProperties}
+      colors={{ scheme: 'category10' }}
+      data={simulations.map((simulation) => ({
+        id: simulation.name,
+        data: simulation.data.map((d) => ({ x: d.date, y: d.pr })),
+      }))}
+      xScale={{
+        type: 'time',
+        format: '%Y-%m-%d',
+        useUTC: false,
+        precision: 'hour',
+      }}
+      xFormat="time:%Y-%m-%d"
+      yScale={{ type: 'linear' }}
+      axisBottom={{
+        format: '%b %d',
+        tickValues: 'every 1 week',
+        legendOffset: -12,
+      }}
+      curve="linear"
+      pointSize={4}
+      pointBorderWidth={1}
+      pointColor={{ theme: 'background' }}
+      pointBorderColor={{ from: 'serieColor' }}
+      useMesh={true}
+      enableSlices="x"
+      theme={{
+        axis: {
+          domain: {
+            line: {
+              strokeWidth: 0,
+              stroke: '#526271',
+            },
+          },
+          ticks: {
+            line: {
+              strokeWidth: 1,
+              stroke: '#526271',
+            },
+            text: {
+              fill: '#8d9cab',
+              fontSize: 11,
+            },
+          },
+          legend: {
+            text: {
+              fill: '#ccd7e2',
+              fontSize: 13,
+              fontWeight: 500,
+            },
+          },
+        },
+        grid: {
+          line: {
+            stroke: '#444',
+          },
+        },
+        tooltip: {
+          container: {
+            color: 'black',
+          },
+        },
+      }}
+    />
   );
 };

@@ -18,7 +18,7 @@ export interface DataPoint {
 }
 
 const calculatePR = (ep: number, gp: number): number => {
-  return ep / (gp !== 0 ? gp : 1);
+  return Math.round((10 * ep) / (gp !== 0 ? gp : 1)) / 10;
 };
 
 const decay = (value: number, percent: number): number => {

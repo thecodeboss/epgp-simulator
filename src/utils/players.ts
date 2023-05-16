@@ -6,16 +6,19 @@ export const usePlayers = (defaultPlayers: Player[]) => {
   const [players, setPlayers] = useState<Player[]>(defaultPlayers);
 
   const addPlayer = useCallback(() => {
+    const id = uuid();
     setPlayers((players) => [
       ...players,
       {
         color: '#000000',
-        id: uuid(),
+        id,
         name: 'New Player',
         initialEP: 0,
         initialGP: 10, // TODO: use minimum GP from config
       },
     ]);
+
+    return id;
   }, [setPlayers]);
 
   const deletePlayer = useCallback(

@@ -2,12 +2,18 @@ import type { FC } from 'react';
 import { Player } from '../utils/types';
 
 interface PlayersProps {
+  addPlayer: () => void;
   players: Player[];
   selectedPlayer: string;
   setSelectedPlayer: (player: string) => void;
 }
 
-export const Players: FC<PlayersProps> = ({ players, selectedPlayer, setSelectedPlayer }) => {
+export const Players: FC<PlayersProps> = ({
+  addPlayer,
+  players,
+  selectedPlayer,
+  setSelectedPlayer,
+}) => {
   return (
     <div
       style={{
@@ -15,7 +21,12 @@ export const Players: FC<PlayersProps> = ({ players, selectedPlayer, setSelected
         width: '250px',
       }}
     >
-      <h2 style={{ padding: '1rem' }}>Players</h2>
+      <div style={{ alignItems: 'center', display: 'flex' }}>
+        <h2 style={{ padding: '1rem' }}>Players</h2>
+        <button style={{ width: '100px' }} onClick={addPlayer}>
+          Add Player
+        </button>
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {players.map((player) => (
           <div

@@ -39,8 +39,8 @@ const defaultPlayers: Player[] = [
 
 const App: FC = () => {
   const [config, setConfig] = useState<Config>(defaultConfig);
-  const { players, updatePlayer } = usePlayers(defaultPlayers);
-  const [selectedPlayer, setSelectedPlayer] = useState<string>(players[0].id);
+  const { players, addPlayer, deletePlayer, updatePlayer } = usePlayers(defaultPlayers);
+  const [selectedPlayer, setSelectedPlayer] = useState<string>(players[0]?.id);
 
   return (
     <div style={{ display: 'flex', flexGrow: 1 }}>
@@ -63,12 +63,21 @@ const App: FC = () => {
           }}
         >
           <Players
+            addPlayer={() => setSelectedPlayer(addPlayer())}
             players={players}
             selectedPlayer={selectedPlayer}
             setSelectedPlayer={setSelectedPlayer}
           />
           <PlayerSettings
-            player={players.find((player) => player.id === selectedPlayer)!}
+            deletePlayer={(id) => {
+              deletePlayer(id);
+              if (id === players[0].id && players.length > 1) {
+                setSelectedPlayer(players[1].id);
+              } else {
+                setSelectedPlayer(players[0].id);
+              }
+            }}
+            player={players.find((player) => player.id === selectedPlayer)}
             updatePlayer={updatePlayer}
           />
         </div>

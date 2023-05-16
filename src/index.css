@@ -6,12 +6,27 @@ html, body {
   font-family: "Source Sans Pro", Arial, sans-serif;
 }
 
-h1, h2, h3 {
-  margin: 0;
+button {
+  background-color: transparent;
+  border: 1px solid #d87a16;
+  border-radius: 6px;
+  color: #d87a16;
+  cursor: pointer;
+  padding: 6px 15px;
 }
 
-label {
-  font-size: 0.8rem;
+button:hover {
+  border: 1px solid #e89a3c;
+  color: #e89a3c;
+}
+
+button:active {
+  border: 1px solid #aa6215;
+  color: #aa6215;
+}
+
+h1, h2, h3 {
+  margin: 0;
 }
 
 input {
@@ -19,6 +34,10 @@ input {
   border: 0;
   color: white;
   padding: 5px 8px;
+}
+
+label {
+  font-size: 0.8rem;
 }
 
 #root {

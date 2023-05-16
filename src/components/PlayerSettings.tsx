@@ -3,17 +3,21 @@ import type { Player } from '../utils/types';
 import { Input } from './Input';
 
 interface PlayerSettingsProps {
-  player: Player;
+  deletePlayer: (id: string) => void;
+  player?: Player;
   updatePlayer: (id: string, player: Player) => void;
 }
 
-export const PlayerSettings: FC<PlayerSettingsProps> = ({ player, updatePlayer }) => {
+export const PlayerSettings: FC<PlayerSettingsProps> = ({ deletePlayer, player, updatePlayer }) => {
   const handleChange = useCallback(
     (key: string, value: number | string) => {
+      if (!player) return;
       updatePlayer(player.id, { ...player, [key]: value });
     },
     [player, updatePlayer]
   );
+
+  if (!player) return null;
 
   return (
     <div
@@ -41,6 +45,7 @@ export const PlayerSettings: FC<PlayerSettingsProps> = ({ player, updatePlayer }
         type="number"
         value={player.initialGP}
       />
+      <button onClick={() => deletePlayer(player.id)}>Delete Player</button>
     </div>
   );
 };

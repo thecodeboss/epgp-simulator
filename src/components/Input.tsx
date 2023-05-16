@@ -12,7 +12,8 @@ export const Input: FC<InputProps> = ({ label, onChange, name, type, value }) =>
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (type === 'number') {
-        onChange?.(name, parseInt(event.target.value, 10));
+        const parsedValue = parseInt(event.target.value, 10);
+        onChange?.(name, isNaN(parsedValue) ? '' : parsedValue);
       } else {
         onChange?.(name, event.target.value);
       }

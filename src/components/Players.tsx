@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import type { FC } from 'react';
 import { Player } from '../utils/types';
 
 interface PlayersProps {
@@ -12,7 +12,7 @@ export const Players: FC<PlayersProps> = ({ players, selectedPlayer, setSelected
     <div
       style={{
         borderRight: '1px solid rgba(255, 255, 255, 0.04)',
-        width: '400px',
+        width: '250px',
       }}
     >
       <h2 style={{ padding: '1rem' }}>Players</h2>
@@ -22,10 +22,11 @@ export const Players: FC<PlayersProps> = ({ players, selectedPlayer, setSelected
             key={player.name}
             style={{
               backgroundColor:
-                player.name === selectedPlayer ? 'rgba(255, 255, 255, 0.08)' : undefined,
+                player.id === selectedPlayer ? 'rgba(255, 255, 255, 0.08)' : undefined,
+              cursor: 'pointer',
               padding: '0.5rem 1rem',
             }}
-            onClick={() => setSelectedPlayer(player.name)}
+            onClick={() => setSelectedPlayer(player.id)}
           >
             {player.name}
           </div>

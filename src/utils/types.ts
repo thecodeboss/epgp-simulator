@@ -9,6 +9,7 @@ export interface Config {
 
 export interface Player {
   color: string;
+  id: string;
   initialEP: number;
   initialGP: number;
   name: string;

@@ -1,13 +1,13 @@
-import { FC, useCallback } from 'react';
-import { Player } from '../utils/types';
+import type { FC } from 'react';
+import type { Player } from '../utils/types';
 import { Input } from './Input';
 
 interface PlayerConfigProps {
   player: Player;
-  setPlayer: (player: Player) => void;
+  updatePlayer: (id: string, player: Player) => void;
 }
 
-export const PlayerConfig: FC<PlayerConfigProps> = ({ player, setPlayer }) => {
+export const PlayerConfig: FC<PlayerConfigProps> = ({ player, updatePlayer }) => {
   return (
     <div
       style={{
@@ -15,6 +15,7 @@ export const PlayerConfig: FC<PlayerConfigProps> = ({ player, setPlayer }) => {
         flexDirection: 'column',
         gap: '1rem',
         padding: '1rem',
+        width: '250px',
       }}
     >
       <h2>Player Config</h2>

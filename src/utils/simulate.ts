@@ -30,7 +30,9 @@ export const simulate = (options: SimOptions): Array<DataPoint> => {
   let currentGP = options.initialGP;
 
   let currentDate = new Date(options.startDate);
-  const data: Array<DataPoint> = [];
+  const data: Array<DataPoint> = [
+    { date: currentDate, pr: calculatePR(currentEP, currentGP), note: 'Start' },
+  ];
 
   currentDate.setHours(0, 0, 0, 0);
 

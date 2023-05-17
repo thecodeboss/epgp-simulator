@@ -8,12 +8,12 @@ import { usePlayers } from './utils/players';
 import { Config, Player } from './utils/types';
 
 const defaultConfig: Config = {
-  startDate: '2023-01-01',
+  startDate: '2023-01-03',
   endDate: '2023-04-31',
   epPerRaid: 1000,
-  minimumGP: 10,
-  weeklyEPDecayPercent: 10,
-  weeklyGPDecayPercent: 20,
+  minimumGP: 200,
+  weeklyEPDecayPercent: 20,
+  weeklyGPDecayPercent: 25,
 };
 
 const defaultPlayers: Player[] = [
@@ -21,19 +21,19 @@ const defaultPlayers: Player[] = [
     name: 'Code',
     id: uuid(),
     initialEP: 1200,
-    initialGP: 60,
+    initialGP: 6000,
   },
   {
     name: 'Lunch',
     id: uuid(),
     initialEP: 1400,
-    initialGP: 10,
+    initialGP: 200,
   },
   {
     name: 'Ppstorm',
     id: uuid(),
     initialEP: 1000,
-    initialGP: 10,
+    initialGP: 200,
   },
 ];
 
